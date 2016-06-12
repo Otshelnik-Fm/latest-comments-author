@@ -1,0 +1,1 @@
+Name: Latest comments author (последние комментарии пользователя);Version: 2.0.1;Support Core: 13.2.3;Description: Считает и показывает в личном кабинете все комментарии пользователя;Author: Otshelnik-Fm;Author URI: http://wppost.ru/author/Otshelnik-Fm/;Add-on URI: http://wppost.ru/products/latest-comments-author-poslednie-kommentarii-polzovatelya/;
