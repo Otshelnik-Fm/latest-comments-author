@@ -1,137 +1,95 @@
 /*Latest comments author*/
-.lastcomm-count-total {
-	margin: 6px 0 0;
-	padding:5px 4px 5px 6px;
-	float:right;
-	font:14px arial;
-	background-color:#c6dce6;
+.lca_count {
+    background-color: rgba(210, 210, 210, 0.6);
+    float: right;
+    font: 14px arial;
+    margin: 4px 5px 0 0;
+    padding: 5px 4px 5px 6px;
 }
-.lastcomm-h {
-	background-color:#c6dce6;
-    margin: 0 0 0 5px;
+.lca_count .fa-comments-o {
+    padding: 0 5px 0 0;
+}
+.lca_head {
+    background: rgba(210, 210, 210, 0.6);
+    box-sizing: content-box;
+    margin: 0 0 0 7px;
     padding: 5px 4px;
-	width:215px;
-	font:18px arial;
+    width:215px;
+    font:18px arial;
 }
-.lastcomm-feed {
-    background: #f8f8f8;
-    border: 1px solid #c6dce6;
-    box-shadow: 0 0 24px 7px #d8e7ee inset;
-    margin: 0 0 8px;
+.lca_single {
+    background: rgba(222, 222, 222, 0.3);
+    box-shadow: 0 0 1px 1px rgba(210, 210, 210, 0.8);
+    margin: 0 2px 12px;
     padding: 6px 3px 2px;
 }
-.lastcomm-num {
-    background-color: #d8e7ee;
+.lca_num {
+    background: rgba(210, 210, 210, 0.6);
+    color: #555;
     float: left;
     font: bold 16px arial;
     margin: -6px 0 0 -3px;
     min-width: 10px;
     padding: 6px 8px 6px 6px;
 }
-.lastcomm-title {
+.lca_title {
     font: bold 16px arial;
-    margin-left: 10px;
-	float: left;
+    float: left;
     width: 72%;
-	width: calc(100% - 68px - 45px); /* 100% отступ справа 68 и отступ слева 45 */
+    width: calc(100% - 68px - 45px);  /* 100% отступ справа 68 и отступ слева 45 */
 }
-.lastcomm-date {
+.lca_title .fa-volume-up {
+    margin: 0 5px 0 8px;
+}
+.lca_date {
     float: right;
     font: 10px arial;
     margin: 0;
-	width: 65px;
+    width: 65px;
 }
-.lastcomm-content {
+.lca_content {
     padding: 15px 5px 3px;
     clear: both;
-	overflow: hidden;
+    overflow: hidden;
 }
-
-.wprecallblock #lk-content .latestcomments_block .votes-window {
-    margin-bottom: 6px ;
-    position: relative;
-}
-.wprecallblock #lk-content .latestcomments_block {
-    padding: 5px 0;
-}
-.lastcomm-count-total:hover:after {
+.lca_count:hover:after {
     content: " всего";
 }
-
-.latestcomments_block span.lastcomm_pages {
-    font-size: 16px;
-    text-decoration: none;
-}
-.lastcomm_mess {
+.lca_mess {
     font: bold 16px arial;
     padding-left: 10px;
 }
-
-.rayt-res {
-	 margin: 8px 6px 6px 20px;
-}
-
-#lk-content .latestcomments_block .post-rating {
+.lca_single .post-rating {
     clear: both;
     padding: 0;
     margin: 8px 6px 6px;
 }
-
-.latestcomments_block .lastcomm_warn {
-    color: #b22222;
-    font: bold 16px/1.5 arial;
-    padding: 5px 10px;
+.lca_single .rating-value-block {
+    color: #67747d;
 }
-
-.latestcomments_block .post-rating .rating-null {
-    color: #2A3740;
+.lca_single .rating-plus {
+    color: #008000;
 }
-
-/* Adaptive for mobile start */
-@media screen and (max-width:890px) {
-	.wprecallblock .lastcomm-title {
-		width: 65%;
-		width: calc(100% - 68px - 45px);
-	}
+.lca_single .rating-minus {
+    color: red;
 }
-@media screen and (max-width:770px) {
-	.wprecallblock .lastcomm-title {
-		width: 60%;
-		width: calc(100% - 68px - 45px);
-	}
+/* Adaptive start */
+@media screen and (max-width:400px) {
+    .lca_title {
+        width: 65%;
+        width: calc(100% - 68px - 45px);
+    }
+    .lca_count:hover:after {
+        content: "";
+    }
+    .lca_head {
+        font: 16px arial;
+        margin: 0;
+        padding: 4px 2px 5px 6px;
+        width: 97%;
+    }
+    .lca_count {
+        margin: 1px 2px 0 0;
+    }
 }
-@media screen and (max-width:720px) {
-	.wprecallblock .lastcomm-title {
-		width: 75%;
-		width: calc(100% - 68px - 45px);
-	}
-}
-@media screen and (max-width:500px) {
-	.wprecallblock .lastcomm-title {
-		width: 65%;
-		width: calc(100% - 68px - 45px);
-	}
-}
-@media screen and (max-width:385px) {
-	.lastcomm-count-total:hover:after {
-		content: "";
-	}
-}
-@media screen and (max-width:365px) {
-	.wprecallblock .lastcomm-title {
-		display: inline;
-		float: none;
-		width: auto;
-	}
-	.lastcomm-h {
-		font: 16px arial;
-		margin: 0;
-		padding: 4px 2px 5px 6px;
-		width: 100%;
-	}
-	.lastcomm-count-total {
-		margin: 2px 2px 0 0;
-	}
-	
-}
-/* Adaptive for mobile end */
+/* Adaptive end */
