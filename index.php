@@ -79,7 +79,9 @@ function lca_comments(){
                          .'</div>';
                 $out .= '<div class="lca_date">'.mysql2date('d.m.Yг. H:i:s', $comment_one->comment_date).'</div>';
                 $out .= '<div class="lca_content">'.$comment_one->comment_content.'</div>';
-                $out .= rcl_get_html_post_rating($comment_one->comment_ID,'comment');   // выводим рейтинг и детализацию голосования
+                if (function_exists('rcl_get_html_post_rating')) {
+                    $out .= rcl_get_html_post_rating($comment_one->comment_ID,'comment');   // выводим рейтинг и детализацию голосования
+                }
             $out .= '</div>';
         }
 
