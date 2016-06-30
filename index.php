@@ -48,7 +48,7 @@ function lca_comments(){
     if(!$inpage) $inpage = '10';
 
                                                 // считаем комментарии пользователя
-    $count_comments = $wpdb->get_var("SELECT COUNT(comment_ID) FROM ".$wpdb->prefix ."comments WHERE user_id = '$user_LK' AND comment_approved = 1");
+    $count_comments = $wpdb->get_var("SELECT COUNT(comment_ID) FROM ".$wpdb->prefix ."comments WHERE user_id = ".$user_LK." AND comment_approved = 1");
     $rclnavi = new RCL_navi($inpage,$count_comments,'&tab=latestcomments'); // передаем в класс навигации параметры
     $lca_start = ($rclnavi->navi-1)*$inpage; // отступ для запроса
 
@@ -58,8 +58,8 @@ function lca_comments(){
             FROM ".$wpdb->prefix ."comments AS big
             LEFT JOIN ".RCL_PREF."rating_totals  AS rtng
             ON(big.comment_ID=rtng.object_id)
-            WHERE big.user_id = '$user_LK' AND big.comment_approved = 1
-            ORDER BY comment_date DESC LIMIT $lca_start,$inpage
+            WHERE big.user_id = ".$user_LK." AND big.comment_approved = 1
+            ORDER BY comment_date DESC LIMIT ".$lca_start.",".$inpage."
         ");
 
     if($comments_user){ // есть комментарий у пользователя
@@ -68,18 +68,18 @@ function lca_comments(){
         $out .= '<div class="lca_head">Последние комментарии:</div>';
         $out .= '<div class="lca_blk">';
 
-        foreach($comments_user as $comment){
+        foreach($comments_user as $comment_one){
             $comm_nmbr = ($count_comments-$lca_start);
             $count_comments--;
-            $commen_zagolov = get_the_title($comment->comment_post_ID);
+            $commen_zagolov = get_the_title($comment_one->comment_post_ID);
             $out .= '<div class="lca_single">';
                 $out .= '<div class="lca_num">'.$comm_nmbr.'</div>';
                 $out .= '<div class="lca_title"><i class="fa fa-volume-up"></i>'
-                            .'<a href="'.get_permalink( $comment->comment_post_ID ).'#comment-'.$comment->comment_ID.'" title="Перейти">'.$commen_zagolov.'</a>'
+                            .'<a href="'.get_permalink( $comment_one->comment_post_ID ).'#comment-'.$comment_one->comment_ID.'" title="Перейти">'.$commen_zagolov.'</a>'
                          .'</div>';
-                $out .= '<div class="lca_date">'.mysql2date('d.m.Yг. H:i:s', $comment->comment_date).'</div>';
-                $out .= '<div class="lca_content">'.$comment->comment_content.'</div>';
-                $out .= rcl_get_html_post_rating($comment->comment_ID,'comment');   // выводим рейтинг и детализацию голосования
+                $out .= '<div class="lca_date">'.mysql2date('d.m.Yг. H:i:s', $comment_one->comment_date).'</div>';
+                $out .= '<div class="lca_content">'.$comment_one->comment_content.'</div>';
+                $out .= rcl_get_html_post_rating($comment_one->comment_ID,'comment');   // выводим рейтинг и детализацию голосования
             $out .= '</div>';
         }
 
