@@ -1,12 +1,32 @@
 <?php
 
-rcl_enqueue_style('latestcomments',__FILE__);
-
-
 require_once 'settings.php';
 
 
-function add_tab_comments(){
+// подключаем стили только в лк
+function lca_get_style(){
+    global $user_LK;
+    if($user_LK){
+        rcl_enqueue_style('latestcomments',rcl_addon_url('style.css', __FILE__));
+    }
+}
+add_action('rcl_enqueue_scripts','lca_get_style',10);
+
+
+
+// считаем комментарии пользователя
+function lca_count_user_comm(){
+    global $user_LK;
+    if($user_LK){       // если в ЛК
+        global $wpdb;
+        $lca_count = $wpdb->get_var("SELECT COUNT(comment_ID) FROM ".$wpdb->prefix ."comments WHERE user_id = ".$user_LK." AND comment_approved = 1");
+        return $lca_count;
+    }
+}
+
+
+// вкладка в counters
+function lca_add_tab_comments(){
     global $rcl_options;
     $view = (isset($rcl_options['lcp_vide'])) ? $rcl_options['lcp_vide'] : 1; // настраиваем публичность вкладки
     switch($view){
@@ -16,12 +36,13 @@ function add_tab_comments(){
         case 3: $public = 0;
             break;
     }
-    rcl_tab('latestcomments','lca_out','Комментарии',array('order'=>55,'class'=>'fa-comment-o','public'=>$public,'cache'=>true,'ajax-load'=>true));
+    $count = lca_count_user_comm();
+    rcl_tab('latestcomments','lca_out','Комментарии',array('public'=>$public,'ajax-load'=>true,'cache'=>true,'output' =>'counters','counter'=>$count,'class'=>'fa-comment-o'));
 }
-add_action('init','add_tab_comments');
+add_action('init','lca_add_tab_comments');
 
 
-
+// блок комментариев
 function lca_out(){
     global $user_LK;
 
@@ -47,10 +68,9 @@ function lca_comments(){
     $inpage = $rcl_options['lca_comm'];		// Передаем значение комментариев на страницу из админки
     if(!$inpage) $inpage = '10';
 
-                                                // считаем комментарии пользователя
-    $count_comments = $wpdb->get_var("SELECT COUNT(comment_ID) FROM ".$wpdb->prefix ."comments WHERE user_id = ".$user_LK." AND comment_approved = 1");
-    $rclnavi = new RCL_navi($inpage,$count_comments,'&tab=latestcomments'); // передаем в класс навигации параметры
-    $lca_start = ($rclnavi->navi-1)*$inpage; // отступ для запроса
+    $count_comments = lca_count_user_comm();    // кол-во комментариев у юзера
+    $rclnavi = new Rcl_PageNavi('l_comments',$count_comments,array('in_page'=>$inpage)); // передаем в класс навигации параметры
+    $lca_start = $rclnavi->offset; // отступ для запроса
 
     // формируем таблицу с данными
     $comments_user = $wpdb->get_results("
@@ -88,7 +108,7 @@ function lca_comments(){
         $out .= '</div>';
         $out = convert_smilies($out);
         $out_fin = nl2br($out);
-        $out_fin .= $rclnavi->navi();
+        $out_fin .= $rclnavi->pagenavi();
 
         return $out_fin;
     } else {
@@ -99,16 +119,35 @@ function lca_comments(){
 
 // перевод hex в rgb и применяем стили
 function lca_hex_to_rgb(){
-    global $rcl_options;
-    if($rcl_options['lca_color'] == 1){                         // если разрешено запускаем
-        $lca_hex = $rcl_options['primary-color'];               // достаем оттуда наш цвет
-        list($r, $g, $b) = sscanf($lca_hex, "#%02x%02x%02x");   // разбиваем строку на нужный нам формат
-        echo '<style>
+    global $user_LK;
+    if($user_LK){
+        global $rcl_options;
+        if($rcl_options['lca_color'] == 1){                         // если разрешено запускаем
+            $lca_hex = $rcl_options['primary-color'];               // достаем оттуда наш цвет
+            list($r, $g, $b) = sscanf($lca_hex, "#%02x%02x%02x");   // разбиваем строку на нужный нам формат
+            echo '<style>
 #tab-latestcomments .rcl-navi{background:rgba('.$r.','.$g.','.$b.',0.04);box-shadow:0 0 2px rgba('.$r.','.$g.','.$b.',0.4);}
 #tab-latestcomments .lca_single{background:rgba('.$r.','.$g.','.$b.',0.07);box-shadow:0 0 1px 1px rgba('.$r.','.$g.','.$b.',0.3);}
 #tab-latestcomments .lca_num{background:rgba('.$r.','.$g.','.$b.',0.12);}
 #tab-latestcomments .lca_head,#tab-latestcomments .lca_count{background:rgba('.$r.','.$g.','.$b.',0.17);}
 </style>';
+        }
     }
 }
 add_action('wp_footer','lca_hex_to_rgb');
+
+
+// в правое меню добавляю пункт
+add_action('rcl_bar_setup','lca_add_recallbar_r_menu',10);
+function lca_add_recallbar_r_menu(){
+
+    if(!is_user_logged_in()) return false;
+    global $user_ID;
+    rcl_bar_add_menu_item('profile-link',
+        array(
+            'url'=>rcl_format_url(get_author_posts_url($user_ID),'latestcomments'),
+            'icon'=>'fa-comment-o',
+            'label'=>'Ваши комментарии'
+        )
+    );
+}
