@@ -74,11 +74,9 @@ function lca_comments(){
 
     // формируем таблицу с данными
     $comments_user = $wpdb->get_results("
-            SELECT comment_ID,comment_post_ID,comment_date,comment_content,rating_total
-            FROM ".$wpdb->prefix ."comments AS big
-            LEFT JOIN ".RCL_PREF."rating_totals  AS rtng
-            ON(big.comment_ID=rtng.object_id)
-            WHERE big.user_id = ".$user_LK." AND big.comment_approved = 1
+            SELECT comment_ID,comment_post_ID,comment_date,comment_content
+            FROM ".$wpdb->prefix ."comments AS comm
+            WHERE comm.user_id = ".$user_LK." AND comm.comment_approved = 1
             ORDER BY comment_date DESC LIMIT ".$lca_start.",".$inpage."
         ");
 
