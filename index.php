@@ -5,8 +5,7 @@ require_once 'settings.php';
 
 // подключаем стили только в лк
 function lca_get_style(){
-    global $user_LK;
-    if($user_LK){
+    if(rcl_is_office()){
         rcl_enqueue_style('latestcomments',rcl_addon_url('style.css', __FILE__));
     }
 }
@@ -17,9 +16,10 @@ add_action('rcl_enqueue_scripts','lca_get_style',10);
 // считаем комментарии пользователя
 function lca_count_user_comm(){
     global $user_LK;
-    if($user_LK){       // если в ЛК
+    if(rcl_is_office()){       // если в ЛК
         global $wpdb;
         $lca_count = $wpdb->get_var("SELECT COUNT(comment_ID) FROM ".$wpdb->prefix ."comments WHERE user_id = ".$user_LK." AND comment_approved = 1");
+
         return $lca_count;
     }
 }
@@ -37,17 +37,33 @@ function lca_add_tab_comments(){
             break;
     }
     $count = lca_count_user_comm();
-    rcl_tab('latestcomments','lca_out','Комментарии',array('public'=>$public,'ajax-load'=>true,'cache'=>true,'output' =>'counters','counter'=>$count,'class'=>'fa-comment-o'));
+
+    $tab_data =	array(
+        'id'=>'latestcomments',
+        'name'=>'Комментарии',
+        'supports'=>array('ajax','cache'),
+        'public'=>$public,
+        'icon'=>'fa-comment-o',
+        'output' =>'counters',
+        'counter'=>$count,
+        'content'=>array(
+            array(
+                'callback' => array(
+                    'name'=>'lca_out'
+                )
+            )
+        )
+    );
+
+    rcl_tab($tab_data);
 }
 add_action('init','lca_add_tab_comments');
 
 
 // блок комментариев
 function lca_out(){
-    global $user_LK;
-
-    if($user_LK){ // если в ЛК
-        global $rcl_options, $user_ID;
+    if(rcl_is_office()){ // если в ЛК
+        global $rcl_options, $user_ID, $user_LK;
         $tab_open = $rcl_options['lcp_vide']; // получаем настройки, кому показывать содержимое вкладки
         if(!$tab_open) $tab_open = '1';
          // проверяем настройки доступа: 1 - Всем, 2 - Только авторизованным, 3 - Только хозяину лк. Все верно - стартуем
@@ -117,26 +133,24 @@ function lca_comments(){
 
 // перевод hex в rgb и применяем стили
 function lca_hex_to_rgb(){
-    global $user_LK;
-    if($user_LK){
-        global $rcl_options;
-        if($rcl_options['lca_color'] == 1){                         // если разрешено запускаем
-            $lca_hex = $rcl_options['primary-color'];               // достаем оттуда наш цвет
-            list($r, $g, $b) = sscanf($lca_hex, "#%02x%02x%02x");   // разбиваем строку на нужный нам формат
-            echo '<style>
+    if(!rcl_is_office()) return false;
+
+    global $rcl_options;
+    if($rcl_options['lca_color'] == 1){                         // если разрешено запускаем
+        $lca_hex = $rcl_options['primary-color'];               // достаем оттуда наш цвет
+        list($r, $g, $b) = sscanf($lca_hex, "#%02x%02x%02x");   // разбиваем строку на нужный нам формат
+        echo '<style>
 #tab-latestcomments .rcl-navi{background:rgba('.$r.','.$g.','.$b.',0.04);box-shadow:0 0 2px rgba('.$r.','.$g.','.$b.',0.4);}
 #tab-latestcomments .lca_single{background:rgba('.$r.','.$g.','.$b.',0.07);box-shadow:0 0 1px 1px rgba('.$r.','.$g.','.$b.',0.3);}
 #tab-latestcomments .lca_num{background:rgba('.$r.','.$g.','.$b.',0.12);}
 #tab-latestcomments .lca_head,#tab-latestcomments .lca_count{background:rgba('.$r.','.$g.','.$b.',0.17);}
 </style>';
-        }
     }
 }
 add_action('wp_footer','lca_hex_to_rgb');
 
 
 // в правое меню добавляю пункт
-add_action('rcl_bar_setup','lca_add_recallbar_r_menu',10);
 function lca_add_recallbar_r_menu(){
 
     if(!is_user_logged_in()) return false;
@@ -149,3 +163,4 @@ function lca_add_recallbar_r_menu(){
         )
     );
 }
+add_action('rcl_bar_setup','lca_add_recallbar_r_menu',10);
