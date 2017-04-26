@@ -14,11 +14,10 @@ add_action('rcl_enqueue_scripts','lca_get_style',10);
 
 
 // считаем комментарии пользователя
-function lca_count_user_comm(){
-    global $user_LK;
+function lca_count_user_comm($user_lk){
     if(rcl_is_office()){       // если в ЛК
         global $wpdb;
-        $lca_count = $wpdb->get_var("SELECT COUNT(comment_ID) FROM ".$wpdb->prefix ."comments WHERE user_id = ".$user_LK." AND comment_approved = 1");
+        $lca_count = $wpdb->get_var("SELECT COUNT(comment_ID) FROM ".$wpdb->prefix ."comments WHERE user_id = ".$user_lk." AND comment_approved = 1");
 
         return $lca_count;
     }
@@ -27,7 +26,7 @@ function lca_count_user_comm(){
 
 // вкладка в counters
 function lca_add_tab_comments(){
-    global $rcl_options;
+    global $rcl_options, $user_LK;
     $view = (isset($rcl_options['lcp_vide'])) ? $rcl_options['lcp_vide'] : 1; // настраиваем публичность вкладки
     switch($view){
         case 1:
@@ -36,7 +35,11 @@ function lca_add_tab_comments(){
         case 3: $public = 0;
             break;
     }
-    $count = lca_count_user_comm();
+
+    $count = 0;
+    if(!is_admin()){
+        $count = lca_count_user_comm($user_LK);
+    }
 
     $tab_data =	array(
         'id'=>'latestcomments',
