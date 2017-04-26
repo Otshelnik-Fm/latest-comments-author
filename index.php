@@ -87,7 +87,7 @@ function lca_comments(){
     $inpage = $rcl_options['lca_comm'];		// Передаем значение комментариев на страницу из админки
     if(!$inpage) $inpage = '10';
 
-    $count_comments = lca_count_user_comm();    // кол-во комментариев у юзера
+    $count_comments = lca_count_user_comm($user_LK);    // кол-во комментариев у юзера
     $rclnavi = new Rcl_PageNavi('l_comments',$count_comments,array('in_page'=>$inpage)); // передаем в класс навигации параметры
     $lca_start = $rclnavi->offset; // отступ для запроса
 
