@@ -81,7 +81,7 @@ v1.0
 == Поддержка и контакты ==
 
 * Поддержка осуществляется в рамках текущего функционала дополнения
-* При возникновении проблемы, создайте соотвествующую тему на <a href="/forum/product-13876" target="_blank">форуме поддержки товара</a>
+* При возникновении проблемы, создайте соотвествующую тему на <a href="/forum/product-8977" target="_blank">форуме поддержки товара</a>
 * Если вам нужна доработка под ваши нужды - вы можете обратиться ко мне в <a href="https://codeseller.ru/author/otshelnik-fm/?tab=chat" target="_blank">ЛС</a> с техзаданием на платную доработку.
 
 Полный список моих работ опубликован <a href="http://across-ocean.otshelnik-fm.ru/" target="_blank">на моем демо-сайте</a> и в каталоге магазина <a href="https://codeseller.ru/author/otshelnik-fm/?tab=publics&subtab=type-products" target="_blank">CodeSeller.ru</a>
