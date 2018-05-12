@@ -1,6 +1,19 @@
 <?php
 
-require_once 'settings.php';
+/*
+
+╔═╗╔╦╗╔═╗╔╦╗
+║ ║ ║ ╠╣ ║║║ https://otshelnik-fm.ru
+╚═╝ ╩ ╚  ╩ ╩
+
+*/
+
+
+
+if( is_admin() && !is_network_admin() ){
+    require_once 'settings.php';
+}
+
 
 
 // подключаем стили только в лк

@@ -28,6 +28,12 @@
 
 
 == Changelog ==
+= 2018-05-12 =
+v3.4.1
+* Исправлено подключения настроек - на мультисайтах приводило к ошибке. Расследование https://otshelnik-fm.ru/?p=3629
+* Добавлена иконка дополнения
+
+
 = 2017-04-26 =
 v3.4
 * Исправлен баг при ajax-загрузке сторонних вкладок - в логи генерировалась ошибка mysql синтаксиса
@@ -84,5 +90,4 @@ v1.0
 * При возникновении проблемы, создайте соотвествующую тему на <a href="/forum/product-8977" target="_blank">форуме поддержки товара</a>
 * Если вам нужна доработка под ваши нужды - вы можете обратиться ко мне в <a href="https://codeseller.ru/author/otshelnik-fm/?tab=chat" target="_blank">ЛС</a> с техзаданием на платную доработку.
 
-Полный список моих работ опубликован <a href="http://across-ocean.otshelnik-fm.ru/" target="_blank">на моем демо-сайте</a> и в каталоге магазина <a href="https://codeseller.ru/author/otshelnik-fm/?tab=publics&subtab=type-products" target="_blank">CodeSeller.ru</a>
-
+Все мои работы опубликованы <a href="https://otshelnik-fm.ru/?p=2562" target="_blank">на моём сайте</a> и в каталоге магазина <a href="https://codeseller.ru/author/otshelnik-fm/?tab=publics&subtab=type-products" target="_blank">CodeSeller.ru</a>
