@@ -28,6 +28,16 @@
 
 
 == Changelog ==
+= 2018-12-10 =  
+v3.5
+* поддержка WP-Recall 16.17.0
+* поддержка дополнения <a href="https://codeseller.ru/products/you-need-to-login/">You Need To Login</a>  
+* минимизация инлайн стилей
+* небольшой рефакторинг - привел к стандарту 16.16
+* изменения в вёрстке и стилях
+
+
+
 = 2018-05-12 =
 v3.4.1
 * Исправлено подключения настроек - на мультисайтах приводило к ошибке. Расследование https://otshelnik-fm.ru/?p=3629
@@ -90,4 +100,4 @@ v1.0
 * При возникновении проблемы, создайте соотвествующую тему на <a href="/forum/product-8977" target="_blank">форуме поддержки товара</a>
 * Если вам нужна доработка под ваши нужды - вы можете обратиться ко мне в <a href="https://codeseller.ru/author/otshelnik-fm/?tab=chat" target="_blank">ЛС</a> с техзаданием на платную доработку.
 
-Все мои работы опубликованы <a href="https://otshelnik-fm.ru/?p=2562" target="_blank">на моём сайте</a> и в каталоге магазина <a href="https://codeseller.ru/author/otshelnik-fm/?tab=publics&subtab=type-products" target="_blank">CodeSeller.ru</a>
+Все мои работы опубликованы <a href="https://otshelnik-fm.ru/?p=2562&utm_source=free-addons&utm_medium=addon-description&utm_campaign=latest-comments-author&utm_content=codeseller.ru&utm_term=all-my-addons" target="_blank">на моём сайте</a> и в каталоге магазина <a href="https://codeseller.ru/author/otshelnik-fm/?tab=publics&subtab=type-products" target="_blank">CodeSeller.ru</a>

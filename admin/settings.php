@@ -1,9 +1,27 @@
 <?php
 
 function lca_settings($options){
+    $my_adv = '';
+    if(!rcl_exist_addon('subscription-two')){
+        $my_adv = '<div class="lca_info">'
+                . '<i class="rcli fa-info" style="color:#ffae19;font-size:20px;vertical-align:text-bottom;margin:0 5px;" aria-hidden="true"></i>'
+                . ' <strong>Пользователи могут подписываться на комментарии</strong> - я написал дополнение: "<a href="https://codeseller.ru/products/subscription-two/" title="Перейти к описанию" target="_blank">Subscription Two</a>" - Залогиненные пользователи могут подписываться на комментарии к записям и форумам.<br/>'
+                . 'Предлагаю вам ознакомиться с его функционалом.<br/>'
+                . 'Подписки - отличный способ вернуть пользователя на ваш сайт.'
+                . '</div>';
+    }
+    if(!rcl_exist_addon('smart-rating-for-comments')){
+        $my_adv .= '<div class="lca_info">'
+                . '<i class="rcli fa-info" style="color:#ffae19;font-size:20px;vertical-align:text-bottom;margin:0 5px;" aria-hidden="true"></i>'
+                . ' <strong>Хотите мотивировать пользователей комментировать чаще?</strong> Дополнение: "<a href="https://codeseller.ru/products/smart-rating-for-comments/" title="Перейти к описанию" target="_blank">Smart Rating For Comments</a>" - Умное автоначисление рейтинга за комментарий, за ответ на комментарий.<br/>'
+                . 'Мотивируйте пользователей, предложив им эту награду.'
+                . '</div>';
+    }
+
+
     $opt = new Rcl_Options(__FILE__);
         $options .= $opt->options(
-            'Настройки Latest comments author',
+            'Настройки Latest comments author', array(
             $opt->option_block(
                 array(
                     $opt->title('Установите:'),
@@ -32,8 +50,9 @@ function lca_settings($options){
                             . 'Используем цвет реколл, которым мы стилизуем кнопки, для своих дополнений'
                             . '</a>'),
                 )
-            )
-        );
+            ),
+            $my_adv
+        ));
     return $options;
 }
 add_filter('admin_options_wprecall','lca_settings');

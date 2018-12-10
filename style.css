@@ -1,68 +1,94 @@
 /*Latest comments author*/
+.lca__background-color {
+    background-color: #eaeaea;
+}
+.lca_header {
+    align-items: flex-end;
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    line-height: normal;
+}
 .lca_count {
-    background-color: rgba(210, 210, 210, 0.6);
-    float: right;
-    font: 14px arial;
-    margin: 4px 5px 0 0;
-    padding: 5px 4px 5px 6px;
+    margin: 0 7px 0 0;
+    padding: 5px 10px;
 }
-.lca_count .fa-comments-o {
-    padding: 0 5px 0 0;
+.lca_count span {
+    margin: 0 5px;
 }
-.lca_head {
-    background: rgba(210, 210, 210, 0.6);
-    box-sizing: content-box;
+.lca_head_text {
+    font-size: 1.3em;
     margin: 0 0 0 7px;
-    padding: 5px 4px;
-    width:215px;
-    font:18px arial;
+    padding: 5px 10px;
+}
+.lca_header .lca_count {
+    display: flex;
+}
+.lca_blk {
+    box-sizing: border-box;
+    line-height: 1.4;
 }
 .lca_single {
-    background: rgba(222, 222, 222, 0.3);
-    box-shadow: 0 0 1px 1px rgba(210, 210, 210, 0.8);
-    margin: 0 2px 12px;
-    padding: 6px 3px 2px;
+    background-color: #fafafa;
+    border: 1px solid #dadada;
+    margin: 0 2px 16px;
+    padding: 0 0 2px;
+}
+.lca-single__head {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.lca-single__left {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: bold;
 }
 .lca_num {
-    background: rgba(210, 210, 210, 0.6);
-    color: #555;
-    float: left;
-    font: bold 16px arial;
-    margin: -6px 0 0 -3px;
-    min-width: 10px;
-    padding: 6px 8px 6px 6px;
+    align-self: flex-start;
+    border-radius: 0 0 6px 0;
+    color: #777;
+    flex-shrink: 0;
+    min-width: 14px;
+    padding: 6px 8px;
+    text-align: center;
 }
 .lca_title {
-    font: bold 16px arial;
-    float: left;
-    width: 72%;
-    width: calc(100% - 68px - 45px);  /* 100% отступ справа 68 и отступ слева 45 */
+    align-items: center;
+    display: flex;
+    line-height: normal;
+    margin: 4px 2px;
 }
 .lca_title .fa-volume-up {
-    margin: 0 5px 0 8px;
+    margin: 0 5px;
+}
+#rcl-office .lca_title a:hover {
+    text-decoration: underline;
 }
 .lca_date {
-    float: right;
-    font: 10px arial;
-    margin: 0;
-    width: 65px;
+    font-size: .7em;
+    margin-right: 2px;
+    max-width: 65px;
 }
 .lca_content {
-    padding: 15px 5px 3px;
     clear: both;
     overflow: hidden;
+    padding: 15px 12px 0;
 }
 .lca_count:hover:after {
-    content: " всего";
+    content: "всего";
 }
 .lca_mess {
-    font: bold 16px arial;
-    padding-left: 10px;
+    background-color: #fce6db;
+    padding: 10px;
+    text-align: center;
 }
 .lca_single .post-rating {
     clear: both;
-    padding: 0;
     margin: 8px 6px 6px;
+    padding: 0;
 }
 .lca_single .rating-value-block {
     color: #67747d;
@@ -74,20 +100,7 @@
     color: red;
 }
 @media screen and (max-width:400px) {
-    .lca_title {
-        width: 65%;
-        width: calc(100% - 68px - 45px);
-    }
-    .lca_count:hover:after {
-        content: "";
-    }
-    .lca_head {
-        font: 16px arial;
-        margin: 0;
-        padding: 4px 2px 5px 6px;
-        width: 97%;
-    }
-    .lca_count {
-        margin: 1px 2px 0 0;
+    .lca_head_text {
+        font-size: 1.1em;
     }
 }
