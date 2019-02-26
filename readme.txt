@@ -33,7 +33,7 @@ v3.5.1
 * Небольшие правки на странице настроек 
 
 
-= 2018-12-10 =  
+= 2018-12-10 =
 v3.5
 * поддержка WP-Recall 16.17.0
 * поддержка дополнения <a href="https://codeseller.ru/products/you-need-to-login/">You Need To Login</a>  
