@@ -238,7 +238,7 @@ function lca_add_recallbar_r_menu() {
     rcl_bar_add_menu_item( 'profile-link', array(
         'url'   => rcl_format_url( get_author_posts_url( $user_ID ), 'latestcomments' ),
         'icon'  => 'fa-comment-o',
-        'label' => 'Мои комментарии'
+        'label' => 'Комментарии'
         )
     );
 }
