@@ -8,18 +8,19 @@
     font-size: 14px;
     justify-content: space-between;
     line-height: normal;
+    margin: 6px 0 0;
 }
 .lca_count {
-    margin: 0 7px 0 0;
-    padding: 5px 10px;
+    margin: 0 12px 0 0;
+    padding: 6px 12px;
 }
 .lca_count span {
-    margin: 0 5px;
+    margin: 0 0 0 6px;
 }
 .lca_head_text {
     font-size: 1.3em;
-    margin: 0 0 0 7px;
-    padding: 5px 10px;
+    margin: 0 0 0 12px;
+    padding: 6px 12px;
 }
 .lca_header .lca_count {
     display: flex;
@@ -31,7 +32,7 @@
 .lca_single {
     background-color: #fafafa;
     border: 1px solid #dadada;
-    margin: 0 2px 16px;
+    margin: 0 1px 18px;
     padding: 0 0 2px;
 }
 .lca-single__head {
@@ -52,46 +53,39 @@
     color: #777;
     flex-shrink: 0;
     min-width: 14px;
-    padding: 6px 8px;
+    padding: 6px 12px;
     text-align: center;
 }
 .lca_title {
     align-items: center;
     display: flex;
     line-height: normal;
-    margin: 4px 2px;
+    margin: 6px;
 }
 .lca_title .fa-volume-up {
-    margin: 0 5px;
+    margin: 0 6px;
 }
 #rcl-office .lca_title a:hover {
     text-decoration: underline;
 }
 .lca_date {
     font-size: .7em;
-    margin-right: 2px;
-    max-width: 65px;
+    line-height: 1;
+    max-width: 70px;
 }
 .lca_content {
     clear: both;
     overflow: hidden;
-    padding: 15px 12px 0;
+    padding: 30px 12px 0;
 }
 .lca_count:hover:after {
     content: "всего";
+    margin: 0 0 0 6px;
 }
 .lca_mess {
     background-color: #fce6db;
     padding: 10px;
     text-align: center;
-}
-.lca_single .post-rating {
-    clear: both;
-    margin: 8px 6px 6px;
-    padding: 0;
-}
-.lca_single .rating-value-block {
-    color: #67747d;
 }
 .lca_single .rating-plus {
     color: #008000;

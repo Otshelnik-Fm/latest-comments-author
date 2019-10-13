@@ -1,5 +1,5 @@
 Name: Latest comments author;
-Version: 3.5.1;
+Version: 3.6.0;
 Support Core: 16.17.0;
 Description: Считает и показывает в личном кабинете все комментарии пользователя. Вкладка в области Counters. Выводит в меню, в правой части реколлбара, ссылку к комментариям;
 Author: Владимир Дружаев (Otshelnik-Fm);
